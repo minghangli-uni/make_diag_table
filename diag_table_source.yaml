@@ -39,7 +39,7 @@ global_defaults:
         - reduction_method
         - file_name_date
     output_freq: 0  # integer: output sampling frequency in output_freq_units (0: every timestep; -1: only at end of run)
-    output_freq_units: months  # time units for output: years, months, days, hours, minutes, or seconds
+    output_freq_units: seconds  # time units for output: years, months, days, hours, minutes, or seconds
     file_format: 1  # integer, must be 1, specifying NetCDF (the only format currently supported)
     time_axis_units: seconds  # time units for the output file time axis: years, months, days, hours, minutes, or seconds
     time_axis_name: time  # must be "time" (case-insensitive)
@@ -128,7 +128,7 @@ diag_table:
                 - file_name_dimension
             reduction_method: snap  # mean, snap, rms, pow##, min, max, or diurnal##
             output_freq: -1  # Output frequency in output_freq_units (0: every timestep; -1: only at end of run)
-            output_freq_units: days  # time units for output: years, months, days, hours, minutes, or seconds
+            output_freq_units: seconds  # time units for output: years, months, days, hours, minutes, or seconds
             new_file_freq:  # optional integer: frequency (in new_file_freq_units) for closing the existing file, and creating a new file
         fields:
             areacello: # Surface area of tracer (T) cells
@@ -273,41 +273,6 @@ diag_table:
         fields:
             tos: 
 
-
-    'daily 2d fields':
-        defaults:  # these can be overridden for individual fields below
-            file_name_dimension: 2d  # descriptor for filename, e.g. 3d, 2d, scalar
-            output_freq_units: days  # time units for output: years, months, days, hours, minutes, or seconds
-        fields:
-            mlotst:
-            SSH:
-            tos:
-            tob:
-            sos:
-            SSU:
-            SSV:
-            Heat_PmE:
-            net_heat_coupler:
-            heat_content_lrunoff:
-
-    'daily 2d max fields':
-        defaults:  # these can be overridden for individual fields below
-            file_name_dimension: 2d  # descriptor for filename, e.g. 3d, 2d, scalar
-            output_freq_units: days  # time units for output: years, months, days, hours, minutes, or seconds
-            reduction_method: max  # mean, snap, rms, pow##, min, max, or diurnal##
-        fields:
-            tob:
-            SSH:
-            tos:
-            
-    'daily 2d min fields':
-        defaults:  # these can be overridden for individual fields below
-            file_name_dimension: 2d  # descriptor for filename, e.g. 3d, 2d, scalar
-            output_freq_units: days  # time units for output: years, months, days, hours, minutes, or seconds
-            reduction_method: min  # mean, snap, rms, pow##, min, max, or diurnal##
-        fields:
-            tos:
-
     'daily scalar timeseries':
         defaults:  # these can be overridden for individual fields below
             file_name_dimension: scalar  # descriptor for filename, e.g. 3d, 2d, scalar
@@ -329,7 +294,7 @@ diag_table:
                 - '':
                     - output_freq_units
                 - file_name_date
-            output_freq_units: days  # time units for output: years, months, days, hours, minutes, or seconds
+            output_freq_units: seconds  # time units for output: years, months, days, hours, minutes, or seconds
             reduction_method: snap  # mean, snap, rms, pow##, min, max, or diurnal##
             packing: 1  # double precision
         fields:
