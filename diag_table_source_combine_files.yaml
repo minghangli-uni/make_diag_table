@@ -32,16 +32,16 @@ global_defaults:
     # A separator is not used prior to the first item.
         - file_name_prefix
         - file_name_dimension
-        - field_name  # substituted by field name in diag_table section below
+        #- field_name  # substituted by field name in diag_table section below
         - output_freq
         - '':
             - output_freq_units
         - reduction_method
         - file_name_date
-    output_freq: 0  # integer: output sampling frequency in output_freq_units (0: every timestep; -1: only at end of run)
+    output_freq: 1  # integer: output sampling frequency in output_freq_units (0: every timestep; -1: only at end of run)
     output_freq_units: months  # time units for output: years, months, days, hours, minutes, or seconds
     file_format: 1  # integer, must be 1, specifying NetCDF (the only format currently supported)
-    time_axis_units: seconds  # time units for the output file time axis: years, months, days, hours, minutes, or seconds
+    time_axis_units: days  # time units for the output file time axis: years, months, days, hours, minutes, or seconds
     time_axis_name: time  # must be "time" (case-insensitive)
     new_file_freq: 1  # optional integer: frequency (in new_file_freq_units) for closing the existing file, and creating a new file
     new_file_freq_units: years  # time units for new_file_freq: years, months, days, hours, minutes, or seconds (optional; required if and only if new_file_freq specified)
@@ -54,7 +54,7 @@ global_defaults:
     output_name:  # same as field_name unless overridden
     # file_name:  # same as file_name in file section above unless overridden in diag_table section below
     time_sampling: all  # Currently not used.  Please use the string "all".
-    reduction_method: snap  # mean, snap, rms, pow##, min, max, or diurnal##
+    reduction_method: mean  # mean, snap, rms, pow##, min, max, or diurnal##
     # reduction_method options:
     #     mean or average or true: Average from the last time written to the current time. Becomes "average" in diag_table.
     #     snap or none or false: No reduction.  Write snapshot of current time step value only. Becomes "none" in diag_table.
@@ -86,7 +86,7 @@ global_defaults:
         average: mean
         'True': mean
         None: ""  # for empty items
-# %yr, %mo, %dy, %hr %mi, %sc are expanded to the current year, month, day, hour, minute and second respectively,
+
 
 #######################################################################################################
 # diag_table section - this defines the diagnostics that will appear in diag_table.
@@ -171,10 +171,6 @@ diag_table:
             so: # Salinity
             T_adx: # Temperature x flux (advection)
             T_ady: # Temperature y flux (advection)
-            T_diffx: # Diffusive Zonal Flux of temperature
-            T_diffy: # Diffusive Meridional Flux of temperature
-            S_diffx: # Diffusive Zonal Flux of salinity
-            S_diffy: # Diffusive Meridional Flux of salinity
             umo: # Ocean Mass X Transport
             vmo: # Ocean Mass Y Transport
             uo: # u velocity
@@ -185,12 +181,12 @@ diag_table:
             vhGM: # Time Mean Diffusive Meridional Thickness Flux
             uhml: # Zonal Thickness Flux to Restratify Mixed Layer
             vhml: # Meridional Thickness Flux to Restratify Mixed Layer
-
             #KE: # Layer Kinetic energy per unit mass
             
     'monthly 3d squared fields':  # for calculating EKE etc
         defaults:  # these can be overridden for individual fields below
             file_name_dimension: 3d  # descriptor for filename, e.g. 3d, 2d, scalar
+            output_freq: 1  # integer: output sampling frequency in output_freq_units (0: every timestep; -1: only at end of run)
             reduction_method: pow02  # mean, snap, rms, pow##, min, max, or diurnal##
         fields:
             uo:
@@ -246,10 +242,6 @@ diag_table:
             T_ady_2d: # Vertically Integrated Advective Meridional Flux of Heat
             T_diffx_2d: # Vertically Integrated Diffusive Zonal Flux of Heat
             T_diffy_2d: # Vertically Integrated Diffusive Meridional Flux of Heat    
-            S_adx_2d: # Vertically Integrated Advective Zonal Flux of Heat
-            S_ady_2d: # Vertically Integrated Advective Meridional Flux of Heat
-            S_diffx_2d: # Vertically Integrated Diffusive Zonal Flux of Heat
-            S_diffy_2d: # Vertically Integrated Diffusive Meridional Flux of Heat    
             tauuo: # surface_downward_x_stress taux
             tauvo: # surface_downward_y_stress tauy
             uhbt: # Barotropic zonal transport averaged over a baroclinic step
@@ -259,6 +251,7 @@ diag_table:
             vmo_2d: # Ocean Mass Y Transport Vertical Sum
             pbo: # Sea Water Pressure at Sea Floor
             
+
     'monthly 2d max fields':
         defaults:  # these can be overridden for individual fields below
             file_name_dimension: 2d  # descriptor for filename, e.g. 3d, 2d, scalar
@@ -277,6 +270,7 @@ diag_table:
     'daily 2d fields':
         defaults:  # these can be overridden for individual fields below
             file_name_dimension: 2d  # descriptor for filename, e.g. 3d, 2d, scalar
+            output_freq: 1  # integer: output sampling frequency in output_freq_units (0: every timestep; -1: only at end of run)
             output_freq_units: days  # time units for output: years, months, days, hours, minutes, or seconds
         fields:
             mlotst:
@@ -293,6 +287,7 @@ diag_table:
     'daily 2d max fields':
         defaults:  # these can be overridden for individual fields below
             file_name_dimension: 2d  # descriptor for filename, e.g. 3d, 2d, scalar
+            output_freq: 1  # integer: output sampling frequency in output_freq_units (0: every timestep; -1: only at end of run)
             output_freq_units: days  # time units for output: years, months, days, hours, minutes, or seconds
             reduction_method: max  # mean, snap, rms, pow##, min, max, or diurnal##
         fields:
@@ -303,6 +298,7 @@ diag_table:
     'daily 2d min fields':
         defaults:  # these can be overridden for individual fields below
             file_name_dimension: 2d  # descriptor for filename, e.g. 3d, 2d, scalar
+            output_freq: 1  # integer: output sampling frequency in output_freq_units (0: every timestep; -1: only at end of run)
             output_freq_units: days  # time units for output: years, months, days, hours, minutes, or seconds
             reduction_method: min  # mean, snap, rms, pow##, min, max, or diurnal##
         fields:
@@ -329,6 +325,7 @@ diag_table:
                 - '':
                     - output_freq_units
                 - file_name_date
+            output_freq: 1  # integer: output sampling frequency in output_freq_units (0: every timestep; -1: only at end of run)
             output_freq_units: days  # time units for output: years, months, days, hours, minutes, or seconds
             reduction_method: snap  # mean, snap, rms, pow##, min, max, or diurnal##
             packing: 1  # double precision
@@ -354,3 +351,22 @@ diag_table:
             total_friver: # Area integrated liquid runoff into ocean total_lrunoff
             total_net_massout: # Area integrated mass leaving ocean due to evap and seaice form
             total_net_massin: # Area integrated mass entering ocean due to predip, runoff, ice melt
+            
+            
+
+
+
+
+
+
+
+
+
+
+            
+
+
+
+
+
+

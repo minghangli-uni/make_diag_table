@@ -146,7 +146,7 @@ for k, grp in indata['diag_table'].items():
         if f['reduction_method'] in ['snap', False]:
             f['reduction_method'] = 'none'
         if f['reduction_method'] in ['mean', True]:
-            f['reduction_method'] = 'average'
+            f['reduction_method'] = 'mean'
 
         fieldline = [f['module_name'], f['field_name'], f['output_name'],
                      fname, f['time_sampling'], f['reduction_method'],
