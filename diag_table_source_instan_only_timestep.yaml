@@ -38,10 +38,10 @@ global_defaults:
             - output_freq_units
         - reduction_method
         - file_name_date
-    output_freq: 1  # integer: output sampling frequency in output_freq_units (0: every timestep; -1: only at end of run)
-    output_freq_units: months  # time units for output: years, months, days, hours, minutes, or seconds
+    output_freq: 0  # integer: output sampling frequency in output_freq_units (0: every timestep; -1: only at end of run)
+    output_freq_units: seconds  # time units for output: years, months, days, hours, minutes, or seconds
     file_format: 1  # integer, must be 1, specifying NetCDF (the only format currently supported)
-    time_axis_units: days  # time units for the output file time axis: years, months, days, hours, minutes, or seconds
+    time_axis_units: seconds  # time units for the output file time axis: years, months, days, hours, minutes, or seconds
     time_axis_name: time  # must be "time" (case-insensitive)
     new_file_freq: 1  # optional integer: frequency (in new_file_freq_units) for closing the existing file, and creating a new file
     new_file_freq_units: years  # time units for new_file_freq: years, months, days, hours, minutes, or seconds (optional; required if and only if new_file_freq specified)
@@ -128,7 +128,7 @@ diag_table:
                 - file_name_dimension
             reduction_method: snap  # mean, snap, rms, pow##, min, max, or diurnal##
             output_freq: -1  # Output frequency in output_freq_units (0: every timestep; -1: only at end of run)
-            output_freq_units: months  # time units for output: years, months, days, hours, minutes, or seconds
+            output_freq_units: seconds  # time units for output: years, months, days, hours, minutes, or seconds
             new_file_freq:  # optional integer: frequency (in new_file_freq_units) for closing the existing file, and creating a new file
         fields:
             areacello: # Surface area of tracer (T) cells
@@ -171,8 +171,6 @@ diag_table:
             so: # Salinity
             T_adx: # Temperature x flux (advection)
             T_ady: # Temperature y flux (advection)
-            S_adx: # Temperature x flux (advection)
-            S_ady: # Temperature y flux (advection)
             T_diffx: # Diffusive Zonal Flux of temperature
             T_diffy: # Diffusive Meridional Flux of temperature
             S_diffx: # Diffusive Zonal Flux of salinity
@@ -296,7 +294,7 @@ diag_table:
                 - '':
                     - output_freq_units
                 - file_name_date
-            output_freq_units: days  # time units for output: years, months, days, hours, minutes, or seconds
+            output_freq_units: seconds  # time units for output: years, months, days, hours, minutes, or seconds
             reduction_method: snap  # mean, snap, rms, pow##, min, max, or diurnal##
             packing: 1  # double precision
         fields:
