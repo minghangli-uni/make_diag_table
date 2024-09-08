@@ -244,6 +244,8 @@ diag_table:
             SSH: # Sea Surface Height
             SSU: # Sea Surface Zonal Velocity
             SSV: # Sea Surface Meridional Velocity
+            trans_x_2d: # depth integrated diffusive tracer x-transport diagn
+            trans_y_2d: # depth integrated diffusive tracer y-transport diagn
             T_adx_2d: # Vertically Integrated Advective Zonal Flux of Heat
             T_ady_2d: # Vertically Integrated Advective Meridional Flux of Heat
             T_diffx_2d: # Vertically Integrated Diffusive Zonal Flux of Heat
