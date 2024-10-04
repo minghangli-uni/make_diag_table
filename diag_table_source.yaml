@@ -157,6 +157,7 @@ diag_table:
     'monthly 3d fields':
         defaults:  # these can be overridden for individual fields below
             file_name_dimension: 3d  # descriptor for filename, e.g. 3d, 2d, scalar
+            reduction_method: mean
         fields:
             h: # Layer Thickness
             e: # Interface Height Relative to Mean Sea Level
@@ -187,7 +188,7 @@ diag_table:
             vhGM: # Time Mean Diffusive Meridional Thickness Flux
             uhml: # Zonal Thickness Flux to Restratify Mixed Layer
             vhml: # Meridional Thickness Flux to Restratify Mixed Layer
-
+            thkcello: # Cell Thickness
             #KE: # Layer Kinetic energy per unit mass
             
     'monthly 3d squared fields':  # for calculating EKE etc
@@ -201,6 +202,7 @@ diag_table:
     'monthly 2d fields':
         defaults:  # these can be overridden for individual fields below
             file_name_dimension: 2d  # descriptor for filename, e.g. 3d, 2d, scalar
+            reduction_method: mean
         fields:
             evs: # Evaporation/condensation at ocean surface (evaporation is negative) evap
             ficeberg: # Frozen runoff (calving) and iceberg melt into ocean frunoff
@@ -244,8 +246,8 @@ diag_table:
             SSH: # Sea Surface Height
             SSU: # Sea Surface Zonal Velocity
             SSV: # Sea Surface Meridional Velocity
-            trans_x_2d: # depth integrated diffusive tracer x-transport diagn
-            trans_y_2d: # depth integrated diffusive tracer y-transport diagn
+            trans_x_2d: # depth integrated diffusive tracer x-transport diagn (KhTh_use_ebt_struct)
+            trans_y_2d: # depth integrated diffusive tracer y-transport diagn (KhTh_use_ebt_struct)
             T_adx_2d: # Vertically Integrated Advective Zonal Flux of Heat
             T_ady_2d: # Vertically Integrated Advective Meridional Flux of Heat
             T_diffx_2d: # Vertically Integrated Diffusive Zonal Flux of Heat
