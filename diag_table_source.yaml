@@ -187,7 +187,7 @@ diag_table:
             vhGM: # Time Mean Diffusive Meridional Thickness Flux
             uhml: # Zonal Thickness Flux to Restratify Mixed Layer
             vhml: # Meridional Thickness Flux to Restratify Mixed Layer
-
+            thkcello: # Cell Thickness
             #KE: # Layer Kinetic energy per unit mass
             
     'monthly 3d squared fields':  # for calculating EKE etc
